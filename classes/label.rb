@@ -1,6 +1,5 @@
 require 'securerandom'
 
-
 class Label
   attr_accessor :title, :color, :items, :id
 

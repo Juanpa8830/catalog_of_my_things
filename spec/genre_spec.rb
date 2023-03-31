@@ -3,7 +3,6 @@ require_relative '../classes/author'
 require_relative '../classes/label'
 require_relative '../classes/item'
 
-
 describe Genre do
   context 'When testing the Genre class' do
     it "should create an object instance of the class Genre with id = '1', name = 'comedy'" do

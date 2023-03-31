@@ -3,7 +3,6 @@ require_relative '../classes/author'
 require_relative '../classes/label'
 require_relative '../classes/item'
 
-
 describe Author do
   context 'When testing the Author class' do
     it "should create an object instance of the class Author with first_name = 'Carlos, last_name = 'Baute'" do

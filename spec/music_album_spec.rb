@@ -1,6 +1,5 @@
 require_relative '../classes/music_album'
 
-
 describe MusicAlbum do
   before :each do
     genre_uno = Genre.new(1, 'terror')

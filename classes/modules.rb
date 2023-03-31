@@ -2,7 +2,6 @@ require_relative 'genre'
 require_relative 'label'
 require_relative 'author'
 
-
 module ExtraMethods
   def save_data
     save_books

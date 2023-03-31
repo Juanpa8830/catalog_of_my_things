@@ -3,7 +3,6 @@ require_relative '../classes/author'
 require_relative '../classes/label'
 require_relative '../classes/item'
 
-
 describe Label do
   context 'When testing the Label class' do
     it "should create an object instance of the class Label with title = 'new', color = 'blue'" do

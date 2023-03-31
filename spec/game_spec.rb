@@ -1,6 +1,5 @@
 require_relative '../classes/game'
 
-
 describe Game do
   before :each do
     genre_uno = Genre.new(1, 'terror')
