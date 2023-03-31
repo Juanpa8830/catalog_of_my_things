@@ -4,8 +4,8 @@ require_relative '../classes/game'
 describe Game do
   before :each do
     genre_uno = Genre.new(1, 'terror')
-    @label_uno = Label.new('new', 'blue')
-    author_uno = Author.new('Steven', 'Spielberg')
+    @label_uno = Label.new('new', 'blue', 1)
+    author_uno = Author.new('Steven', 'Spielberg', 1)
     @game = Game.new(genre_uno, author_uno, @label_uno, '2008-04-05', '3', '2022-05-07')
   end
 

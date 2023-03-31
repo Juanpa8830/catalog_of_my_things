@@ -6,8 +6,8 @@ require 'date'
 
 describe Item do
   genre = Genre.new(1, 'comedy')
-  author = Author.new('Nino', 'Bravo')
-  label = Label.new('new', 'blue')
+  author = Author.new('Nino', 'Bravo', 1)
+  label = Label.new('new', 'blue', 1)
   item = Item.new(genre, author, label, '2008-05-03')
 
   context 'When testing Item Class' do

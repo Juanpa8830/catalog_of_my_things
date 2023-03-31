@@ -4,8 +4,8 @@ require_relative '../classes/music_album'
 describe MusicAlbum do
   before :each do
     genre_uno = Genre.new(1, 'terror')
-    label_uno = Label.new('new', 'blue')
-    @author_uno = Author.new('Steven', 'Spielberg')
+    label_uno = Label.new('new', 'blue', 1)
+    @author_uno = Author.new('Steven', 'Spielberg', 1)
     @album = MusicAlbum.new(genre_uno, @author_uno, label_uno, '2020-04-05', 'yes')
   end
 
