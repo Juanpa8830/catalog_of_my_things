@@ -8,7 +8,6 @@ class Game < Item
   def initialize(*args, multiplayer, last_played_at)
     super(*args)
     @multiplayer = multiplayer
-    puts last_played_at
     @last_played_at = Date.parse(last_played_at)
   end
 
