@@ -23,9 +23,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [school_library] <a name="about-project"></a>
+# 📖 [Catalog] <a name="about-project"></a>
 
-**[school_library]** Allows users to register new people (student or teacher) and books, and records when a person borrows a book from the library and the date. 
+**[Catalog]** Allows users to register new music albums, books and games and to preserve their data.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -42,7 +42,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Takes code morse with an input]**
+- **[Preserves data locally]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -62,8 +62,8 @@ ruby installed
 
 Clone this repository to your desired folder:
 
-  git clone git@github.com:OJuanpa8830/school_library.git
-  cd code-morse-decoder
+  git clone git@github.com:Juanpa8830/catalog_of_my_things.git
+  cd catalog_of_my_things
 
 
 ### Install
@@ -91,9 +91,8 @@ ruby app.rb
 
 👤 **Wali-Muhammad**
 
-- GitHub: [@Itswali](https://github.com/Itswali)
-- Twitter: [@Wali-Muhammad](https://twitter.com/WaliMuh94818599)
-- LinkedIn: [@Wali Muhammad](https://www.linkedin.com/in/wali-muhammad-666040244/)
+- GitHub: [@Oscar-Espinoza](https://github.com/Oscar-Espinoza)
+- LinkedIn: [@Wali Muhammad](https://www.linkedin.com/in/oscar-d-espinoza/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -103,7 +102,7 @@ ruby app.rb
 ## 🔭 Future Features <a name="future-features"></a>
 
 
-- [ ] **[Register new student/teacher]**
+- [ ] **[Register new book, game or music album]**
 - [ ] **[increase the amount of books available in the library]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -114,7 +113,7 @@ ruby app.rb
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Juanpa8830/school_library/issues).
+Feel free to check the [issues page](https://github.com/Juanpa8830/catalog_of_my_things/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
