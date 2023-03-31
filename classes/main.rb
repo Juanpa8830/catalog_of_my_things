@@ -3,7 +3,7 @@ require_relative 'app'
 def main
   app = App.new
   app.start
-  #app.save_data
+  app.save_data
   puts 'Thanks for using this catalogue!'
 end
 
@@ -21,7 +21,7 @@ def selected_menu_option
   puts '9 - Add a game.'
   puts '10 - salida'
 
-  get_option_selected(1, 13)
+  get_option_selected(1, 10)
 end
 
 main
