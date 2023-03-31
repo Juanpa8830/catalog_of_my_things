@@ -89,10 +89,10 @@ ruby app.rb
 - GitHub: [@juanpa8830](https://github.com/Juanpa8830)
 - LinkedIn: [Juan Pablo Guerrero](https://www.linkedin.com/in/juanpabloguerrerorios/)
 
-👤 **Wali-Muhammad**
+👤 **Oscar Espinoza**
 
 - GitHub: [@Oscar-Espinoza](https://github.com/Oscar-Espinoza)
-- LinkedIn: [@Wali Muhammad](https://www.linkedin.com/in/oscar-d-espinoza/)
+- LinkedIn: [@Oscar Espinoza](https://www.linkedin.com/in/oscar-d-espinoza/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
