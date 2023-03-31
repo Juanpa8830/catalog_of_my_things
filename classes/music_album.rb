@@ -7,20 +7,30 @@ class MusicAlbum < Item
   def initialize(*args, on_spotify)
     super(*args)
     @on_spotify = on_spotify
-    save_to_file
+  end
+
+  def self.list_all_albums
+    ObjectSpace.each_object(self).to_a.each_with_index do |album, i|
+      puts "\n[#{i + 1}]. album_id: #{album.id} album_genre: #{album.genre.name} on_spotify: #{album.on_spotify}"
+    end
   end
 
   def can_be_archived?
     super && @on_spotify
   end
 
-  def save_to_file
-    file_path = "data/music_album_data.json"
-    data = JSON.parse(File.read(file_path)) rescue []
-    data << { id: @id, genre: @genre, author: @author, 
-              source: @source, label: @label, 
-              publish_date: @publish_date, archived: @archived, 
-              on_spotify: @on_spotify }
-    File.write(file_path, JSON.pretty_generate(data))
+  def self.all_albums
+    ObjectSpace.each_object(self).to_a
+  end
+
+  def to_json(*_args)
+    {
+      genre_id: @genre.id,
+      author_id: @author.id,
+      label_id: @label.id,
+      publish_date: @publish,
+      id: @id,
+      on_spotify: @on_spotify
+    }.to_json
   end
 end
