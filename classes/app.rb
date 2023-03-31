@@ -1,44 +1,38 @@
 require_relative 'book'
+require_relative 'music_album'
+require_relative 'game'
+require_relative 'genre'
+require_relative 'label'
+require_relative 'author'
+require_relative 'modules'
 require 'json'
-
 
 class App
   def initialize
-    @books = []
-    #@labels = []
- 
-    #load_data
-  end
- # include ExtraMethods
-
-  def books_list
-    if @books.empty?
-      puts 'Add a new book first'
-    else
-      list = ''
-      @books.each_with_index do |book, i|
-        list << "\n[#{i + 1}]. id:#{book.id} genre: #{book.genre.name}, author: #{book.author.first_name + book.author.last_name}"
-      end
-      list << "\n\n"
-    end
+    set_data
+    load_data
   end
 
- 
+  include ExtraMethods
+
+  MENU = {
+    1 => 'call_books',
+    2 => 'call_albums',
+    3 => 'call_games',
+    4 => 'list_genres',
+    5 => 'list_labels',
+    6 => 'list_authors',
+    7 => 'create_book',
+    8 => 'create_album',
+    9 => 'create_game'
+  }.freeze
 
   def start
     loop do
       option = selected_menu_option
-      case option
-      when 1  then puts books_list 
-      when 2 then puts albums_list 
-      when 3 then puts games_list 
-      when 4 then puts genres_list 
-      when 5 then puts labels_list 
-      when 6 then puts authors_list 
-      when 7 then create_book
-      when 8 then create_album
-      when 9 then create_game
-      else  break  end
+      break if option == 10
+
+      send((MENU[option]).to_s)
       wait_user
     end
   end
@@ -49,62 +43,118 @@ class App
     puts ''
   end
 
+  def call_books
+    Book.list_all_books
+  end
+
+  def call_albums
+    MusicAlbum.list_all_albums
+  end
+
+  def call_games
+    Game.list_all_games
+  end
+
+  def set_data
+    Genre.new(1, 'terror')
+    Genre.new(2, 'novela')
+    Genre.new(3, 'comedia')
+    Label.new('new', 'blue', 1)
+    Label.new('used', 'yellow', 2)
+    Label.new('refurbished', 'green', 3)
+    Author.new('Steven', 'Spielberg', 1)
+    Author.new('Mauricio', 'Morales', 2)
+    Author.new('Pedro', 'Infante', 3)
+  end
+
+  def list_labels
+    Label.list_all_labels.each_with_index do |label, i|
+      puts "\n[#{i + 1}]. title:#{label.title} color:#{label.color}"
+    end
+  end
+
+  def list_genres
+    Genre.list_all_genres.each_with_index do |genre, i|
+      puts "\n[#{i + 1}]. #{genre.name} "
+    end
+  end
+
+  def list_authors
+    Author.list_all_authors.each_with_index do |author, i|
+      puts "\n[#{i + 1}]. #{"#{author.first_name} #{author.last_name}"}"
+    end
+  end
+
   def create_book
     puts "\nInput the book data:"
-    print 'Input genre: '
-    genre = gets.chomp
-    print 'Input author: '
-    author = gets.chomp
-    print 'Input label: '
-    label = gets.chomp
-    print 'Input publish date: '
+    selected_genre = obtain_genre
+    selected_author = obtain_author
+    selected_label = obtain_label
+    print "\ninput publish_date in a valid format [yyyy-mm-dd]: "
     publish = gets.chomp
-    print 'Input publisher: '
+    print "\ninput publisher: "
     publisher = gets.chomp
-    print 'Input cover_state: '
+    print "\ninput cover_state: "
     cover_state = gets.chomp
-    book = Book.new(genre, author, label, publish, publisher, cover_state)
-    @books.push(book)
+
+    Book.new(selected_genre, selected_author, selected_label, publish, publisher, cover_state)
     puts "\nBook created successfully.\n"
   end
 
-  def create_person
-    puts "\Do you want to create a student (1) or a teacher (2)? type the number: "
-    option = get_option_selected(1, 2)
-
-    case option
-    when 1
-      add_student
-    when 2
-      add_teacher
-    end
+  def create_game
+    puts "\nInput the game data:"
+    selected_genre = obtain_genre
+    selected_author = obtain_author
+    selected_label = obtain_label
+    print "\ninput publish date valid format [yyyy-mm-dd]: "
+    publish = gets.chomp
+    print "\ninput multiplayer: "
+    multiplayer = gets.chomp
+    print "\ninput last_played_at with a valid format [yyyy-mm-dd]: "
+    last_played_at = gets.chomp
+    Game.new(selected_genre, selected_author, selected_label, publish, multiplayer, last_played_at)
+    puts "\nGame created successfully.\n"
   end
 
-  def create_rental
-    if @books.empty? || @users.empty?
-      puts 'your books list or users list is empty. plase add a book/user first'
-    else
-      puts "\nselect a book from the following list, by number:"
-      puts books_list
-      book_number = get_option_selected(1, @books.length)
-      selected_book = @books[book_number - 1]
-      puts "\nselect a person from the following list, by number:"
-      puts users_list
-      user_number = get_option_selected(1, @users.length)
-      selected_user = @users[user_number - 1]
-      puts "\ninsert the date of this rental:"
-      date = gets.chomp
-      rental = Rental.new(date, selected_book, selected_user)
-      @rentals.push(rental) unless rental.nil?
-      puts "\nrental created successfully.\n"
-    end
+  def create_album
+    puts "\nInput the album data:"
+    selected_genre = obtain_genre
+    selected_author = obtain_author
+    selected_label = obtain_label
+    print "\ninput publish_date valid format [yyyy-mm-dd]: "
+    publish = gets.chomp
+    print "\ninput on spotify?: "
+    on_spotify = gets.chomp
+
+    MusicAlbum.new(selected_genre, selected_author, selected_label, publish, on_spotify)
+    puts "\nalbum created successfully.\n"
   end
 
-  def user_rentals
-    print 'Input user id: '
-    id = gets.chomp
-    person = @users.find { |per| per.id == id }
-    person.nil? ? "There isn't a person with that id\n" : person.rental_list
+  def obtain_genre
+    puts "\nselect a genre from the following list, by number:"
+    Genre.list_all_genres.each_with_index do |gen, i|
+      puts "\n[#{i + 1}]. #{gen.name}"
+    end
+    gen_number = get_option_selected(1, Genre.list_all_genres.length)
+    Genre.list_all_genres[gen_number - 1]
+  end
+
+  def obtain_author
+    puts "\nselect an Author from the following list, by number:"
+    Author.list_all_authors.each_with_index do |author, i|
+      puts "\n[#{i + 1}]. #{"#{author.first_name} #{author.last_name}"}"
+    end
+    author_number = get_option_selected(1, Author.list_all_authors.length)
+    Author.list_all_authors[author_number - 1]
+  end
+
+  def obtain_label
+    puts "\nselect a label from the following list, by number:"
+    Label.list_all_labels.each_with_index do |label, i|
+      puts "\n[#{i + 1}]. title: #{label.title}  color: #{label.color}"
+    end
+    label_number = get_option_selected(1, Label.list_all_labels.length)
+    Label.list_all_labels[label_number - 1]
   end
 
   def get_option_selected(first, last)
@@ -116,38 +166,5 @@ class App
       print 'select a valid option '
     end
     option
-  end
-
-  def permission?
-    print 'has parent permission? [Y/N]'
-    answer = gets.chomp.capitalize
-    return true unless answer == 'N'
-
-    false
-  end
-
-  def add_student
-    puts "\nInput the student data:"
-    print 'Input student name: '
-    name = gets.chomp
-    print 'Input student age: '
-    age = gets.chomp.to_i
-    permiso = age >= 18 ? true : permission?
-    person = Student.new(age, name, parent_permission: permiso)
-    @users.push(person)
-    puts "\nstudent created successfully.\n"
-  end
-
-  def add_teacher
-    puts "\nInput the teacher data:"
-    print 'Input teacher name: '
-    name = gets.chomp
-    print 'Input teacher age: '
-    age = gets.chomp.to_i
-    print 'Input teacher specialization: '
-    specialization = gets.chomp
-    person = Teacher.new(age, specialization, name)
-    @users.push(person)
-    puts "\nteacher created successfully.\n"
   end
 end
